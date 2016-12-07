@@ -1,5 +1,6 @@
 <?php
 require_once('character.class.php');
+require_once('backpack.class.php');
 class Hero extends Character
 {
   function __construct() {
@@ -13,6 +14,7 @@ class Hero extends Character
     $this->bonusDefTurnsLeft = 0;
     $this->bonusDefAmmount = 3;
     $this->name =  "Bohater";
+    $this->backpack = new Backpack();
   }
 
   function shield() {
