@@ -25,21 +25,27 @@ class Character
         echo 'Spudłowałeś<br>';
         break;
       case 'hit':
-        echo 'Trafiłeś<br>';
-        echo "Zadajesz $dmg obrazen<br>";
+        //echo 'Trafiłeś<br>';
+        //echo "Zadajesz $dmg obrazen<br>";
         $target->defend($dmg);
         break;
       case 'crit':
-        echo "Trafiłeś krtytycznie<br>";
+        //echo "Trafiłeś krtytycznie<br>";
         $dmg *= 1.5;
-        echo "Zadajesz $dmg obrazen<br>";
+        //echo "Zadajesz $dmg obrazen<br>";
         $target->defend($dmg);
         break;
     }
   }
   function defend($dmg) {
-    echo "$this->name otrzymuje $dmg obrazen<br>";
-    $this->stats['hp'] -= $dmg;
+    $r = rand(0,100);
+    $dodgeChance = $this->stats['dex'] * 10;
+    if($r <= $dodgeChance) {
+      echo "$this->name wykonuje unik!<br>";
+    } else {
+      echo "$this->name otrzymuje $dmg obrazen<br>";
+      $this->stats['hp'] -= $dmg;
+    }
   }
 }
 ?>
