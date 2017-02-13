@@ -1,7 +1,6 @@
 <?php
-include 'class/imp.class.php';
-include 'class/hero.class.php';
-
+include 'class/Imp.class.php';
+include 'class/Hero.class.php';
 session_start();
 $teren = Array('Woda','Trawa','Śnieg','Pustynia','Góra',
               'Lawa','Miasto','Pustkowie','Jaskinia','Bagno');
@@ -31,7 +30,7 @@ if(isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
     case 'attack':
       // Nacisnieto atakuj
-      $hero->attack($imp);
+      $hero->attack();
       break;
     case 'defend':
       // Nacisnieto bron sie
@@ -49,13 +48,9 @@ if(isset($_REQUEST['action'])) {
       break;
   }
 }
-/*
-$plecak = new Backpack();
-$item1 = new Item("Miecz",10);
-$plecak->putInBackpack($item1);
 
-print_r($plecak);
-*/
+print_r($hero->getLocation());
+
 //$imp = new Imp();
 //$hero->attack($imp);
 //$imp->attack($hero);
@@ -81,45 +76,16 @@ print_r($plecak);
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body" id="modalContent">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 <div class="container">
 	<div class="row">
 	<div class="col-xs-12">
 		<nav class="navbar navbar-inverse" style="background-color: brown;">
 			<ul class="nav navbar-nav">
 				<li style="margin-left:350px" onmouseover="bigImg(this)" onmouseout="normalImg(this)"><a href="#" style="color: white; font-size: 15px">Status</a></li>
-				<li>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-view="stats">
-            Postać
-          </button>
-        </li>
-				<li>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-view="backpack">
-            Plecak
-          </button>
-        </li>
+				<li><a href="#" style="color: white; font-size: 15px">Postać</a></li>
+				<li><a href="#" style="color: white; font-size: 15px">Plecak</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Gildie</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Opcje</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Wyśjcie</a></li>
@@ -177,19 +143,19 @@ print_r($plecak);
 		<div>
 
 		<div class="list-group">
-      <a href="index.php?action=heal">
+      <a href="index.php?action=attack">
+			 <button type="button" class="list-group-item">Atakuj</button>
+      </a>
+      <a href="index.php?action=defend">
+			 <button type="button" class="list-group-item">Zwiększ obrone</button>
+      </a>
 			 <button type="button" class="list-group-item">Ulecz się</button>
-      </a>
-      <a href="index.php?action=shield">
-			 <button type="button" class="list-group-item">Broń się</button>
-      </a>
-			 <button type="button" class="list-group-item">Umiejętność 3</button>
-			 <button type="button" class="list-group-item">Umiejętność 4</button>
-			 <button type="button" class="list-group-item">Umiejętność 5</button>
+			 <button type="button" class="list-group-item">Przywróć manę</button>
+			 <button type="button" class="list-group-item">Kula ognia</button>
 		</div>
 
 		</div>
-// gra_rpg_3a
+
 
 
 	</div> <!-- /left div -->
@@ -374,26 +340,15 @@ print_r($plecak);
 
 	</div> <!-- /row glowny -->
 </div> <!-- /container -->
-
+<pre>
+  <?php print_r($hero); ?>
+</pre>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-    $('#myModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // Button that triggered the modal
-      var view = button.data('view') // Extract info from data-* attributes
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      //var modal = $(this)
-      //modal.find('.modal-title').text('New message to ' + recipient)
-      //modal.find('.modal-body input').val(recipient)
-      //alert(view)
-      $('#modalContent').load(view+'.php')
-    })
-    </script>
   </body>
 </html>
 <?php
