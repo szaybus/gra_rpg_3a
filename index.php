@@ -50,7 +50,11 @@ if(isset($_REQUEST['action'])) {
 }
 
 print_r($hero->getLocation());
-
+$hero->calculateStats();
+//$item = new Item("Miecz siły", 5);
+//$item2 = new Item("Siedmiomilowe buty",2,3);
+//$hero->backpack->addToBackpack($item);
+//$hero->backpack->addToBackpack($item2);
 //$imp = new Imp();
 //$hero->attack($imp);
 //$imp->attack($hero);
