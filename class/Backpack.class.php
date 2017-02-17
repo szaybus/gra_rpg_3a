@@ -25,6 +25,13 @@ class Backpack
       }
     }
   }
+  function showItemTable() {
+    echo '<table border=1>';
+    foreach ($this->items as $key => $item) {
+      $item->itemTableRow();
+    }
+    echo '</table>';
+  }
 }
 
 ?>

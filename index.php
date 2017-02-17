@@ -51,8 +51,8 @@ if(isset($_REQUEST['action'])) {
 
 print_r($hero->getLocation());
 $hero->calculateStats();
-//$item = new Item("Miecz siły", 5);
-//$item2 = new Item("Siedmiomilowe buty",2,3);
+$item = new Item("Miecz siły", 5);
+$item2 = new Item("Siedmiomilowe buty",2,3);
 //$hero->backpack->addToBackpack($item);
 //$hero->backpack->addToBackpack($item2);
 //$imp = new Imp();
@@ -82,12 +82,35 @@ $hero->calculateStats();
     <![endif]-->
 </head>
 <body>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <?php $hero->backpack->showItemTable(); ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="container">
 	<div class="row">
 	<div class="col-xs-12">
 		<nav class="navbar navbar-inverse" style="background-color: brown;">
 			<ul class="nav navbar-nav">
-				<li style="margin-left:350px" onmouseover="bigImg(this)" onmouseout="normalImg(this)"><a href="#" style="color: white; font-size: 15px">Status</a></li>
+        <li>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            modal
+            </button>
+        </li>
+				<li><a href="#" style="color: white; font-size: 15px">Status</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Postać</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Plecak</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Gildie</a></li>

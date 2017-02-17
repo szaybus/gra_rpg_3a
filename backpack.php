@@ -1,8 +1,7 @@
 <?php
-require_once 'class/hero.class.php';
+include 'class/Hero.class.php';
 session_start();
 $hero = $_SESSION['hero'];
-echo '<pre>';
-print_r($hero);
-echo '</pre>';
+$hero->backpack->showItemTable();
+
 ?>

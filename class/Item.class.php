@@ -13,6 +13,11 @@ class Item
                     'int' => $_int, 'sta' => $_sta];
     echo 'Utworzono item...';
   }
+  function itemTableRow() {
+    echo '<tr><td>',$this->name,'</td><td>',$this->stats['str'],'</td><td>',
+          $this->stats['dex'],'</td><td>',$this->stats['int'],'</td><td>',
+          $this->stats['sta'],'</td></tr>';
+  }
 }
 
  ?>
