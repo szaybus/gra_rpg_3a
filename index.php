@@ -91,7 +91,7 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="myModalBody">
 
         </div>
         <div class="modal-footer">
@@ -106,9 +106,9 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
 	<div class="col-xs-12">
 		<nav class="navbar navbar-inverse" style="background-color: brown;">
 			<ul class="nav navbar-nav">
-				<li><a href="#" data-toggle="modal" style="color: white; font-size: 15px">Status</a></li>
-				<li><a href="#" style="color: white; font-size: 15px">Postać</a></li>
-				<li><a href="#" style="color: white; font-size: 15px">Plecak</a></li>
+				<li><a href="#" style="color: white; font-size: 15px">Status</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal" content="character" s style="color: white; font-size: 15px">Postać</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal" content="backpack" s style="color: white; font-size: 15px">Plecak</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Gildie</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Opcje</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Wyśjcie</a></li>
@@ -373,19 +373,20 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script>
+
     $("a[data-toggle=modal]").click(function()
     {
-      ///var essay_id = $(this).attr('id');
+      var pageUrl = $(this).attr('content')+'.php';
 
       $.ajax({
           cache: false,
-          type: 'POST',
-          url: 'backpack.php',
+          type: 'GET',
+          url: pageUrl,
           //data: 'EID='+essay_id,
           success: function(data)
           {
               $('#myModal').show();
-              $('#modalContent').show().html(data);
+              $('#myModalBody').html(data);
           }
       });
     });
