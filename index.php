@@ -82,6 +82,7 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
     <![endif]-->
 </head>
 <body>
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -91,7 +92,7 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
         <div class="modal-body">
-          <?php $hero->backpack->showItemTable(); ?>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -105,12 +106,7 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
 	<div class="col-xs-12">
 		<nav class="navbar navbar-inverse" style="background-color: brown;">
 			<ul class="nav navbar-nav">
-        <li>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            modal
-            </button>
-        </li>
-				<li><a href="#" style="color: white; font-size: 15px">Status</a></li>
+				<li><a href="#" data-toggle="modal" style="color: white; font-size: 15px">Status</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Postać</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Plecak</a></li>
 				<li><a href="#" style="color: white; font-size: 15px">Gildie</a></li>
@@ -376,6 +372,24 @@ $item2 = new Item("Siedmiomilowe buty",2,3);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    $("a[data-toggle=modal]").click(function()
+    {
+      ///var essay_id = $(this).attr('id');
+
+      $.ajax({
+          cache: false,
+          type: 'POST',
+          url: 'backpack.php',
+          //data: 'EID='+essay_id,
+          success: function(data)
+          {
+              $('#myModal').show();
+              $('#modalContent').show().html(data);
+          }
+      });
+    });
+  </script>
   </body>
 </html>
 <?php
