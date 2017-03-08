@@ -27,7 +27,7 @@ class Backpack
   }
   function showItemTable() {
     echo '<table border=1>';
-    foreach ($this->items as $key => $item) {
+    foreach ($this->items as $item) {
       $item->itemTableRow();
     }
     echo '</table>';
