@@ -25,33 +25,11 @@ if(isset($_SESSION['mapa'])) {
     }
   }
 }
-// przetwarzanie danych od uzytjownika
-if(isset($_REQUEST['action'])) {
-  switch ($_REQUEST['action']) {
-    case 'attack':
-      // Nacisnieto atakuj
-      $hero->attack();
-      break;
-    case 'defend':
-      // Nacisnieto bron sie
-      $hero->shield();
-      break;
-    case 'heal':
-      // Nacisnieto lecz sie
-      $hero->heal();
-      break;
-    case 'move':
-      $hero->move($_REQUEST['direction']);
-      break;
-    default:
-      // Błędna zawartosc zmiennej action
-      break;
-  }
-}
 
-print_r($hero->getLocation());
-$hero->calculateStats();
-$item = new Item();
+
+//print_r($hero->getLocation());
+//$hero->calculateStats();
+//$item = new Item();
 //$item2 = new Item("Siedmiomilowe buty",2,3);
 //$hero->backpack->addToBackpack($item);
 //$hero->backpack->addToBackpack($item2);
@@ -125,11 +103,11 @@ $item = new Item();
 			<br>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-          <a href="index.php?action=move&direction=north">
-					<button type="button" class="btn btn-default" aria-label="Left Align">
+
+					<button type="button" class="btn btn-default" aria-label="Left Align" onclick="move('north')">
 						<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
 					</button>
-          </a>
+
 				</div>
 			</div>
 			<br>
@@ -192,22 +170,8 @@ $item = new Item();
 			</div>
 			</div>
 
-			<div class="row">
-        <?php
-        $heroLocation = $hero->getLocation(); // [x][y]
-        //echo "<br>Mapa: <br>";
-        echo '<table>';
-        for ($y=$heroLocation[1]+5; $y >= $heroLocation[1]-5 ; $y--) {
-          echo '<tr>';
-          for ($x=$heroLocation[0]-5; $x <= $heroLocation[0]+5 ; $x++) {
-            $typTerenu = $mapa[$x][$y];
-            echo '<td><img src="img/'.$typTerenu.'.jpg"></td>';
-            //echo "<td>($x, $y)</td>";
-          }
-          echo '</tr>';
-        }
-        echo '</table>';
-        ?>
+			<div class="row" id="mapa">
+
 			</div>
 	</div>  <!-- /middle div -->
 
@@ -372,25 +336,8 @@ $item = new Item();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
+    <script src="js/ajax.js"></script>
 
-    $("a[data-toggle=modal]").click(function()
-    {
-      var pageUrl = $(this).attr('content')+'.php';
-
-      $.ajax({
-          cache: false,
-          type: 'GET',
-          url: pageUrl,
-          //data: 'EID='+essay_id,
-          success: function(data)
-          {
-              $('#myModal').show();
-              $('#myModalBody').html(data);
-          }
-      });
-    });
-  </script>
   </body>
 </html>
 <?php

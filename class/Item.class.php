@@ -105,7 +105,8 @@ class Item
 
     $this->stats[$mainStat] = rand(1,10*$multi);
     $suffixList = Array('str'=>'Strenght', 'dex' => 'Dexterity',
-                    'int' => 'Intelligence', 'sta' => 'Stamina', 'def' => 'Defence');
+                    'int' => 'Intelligence', 'sta' => 'Stamina',
+                    'def' => 'Defence');
     $this->suffix = $suffixList[$mainStat];
   }
   function getItemRarity(){
